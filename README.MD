@@ -4,7 +4,7 @@ This Project contains some subprojects which try to flash an arduino with anothe
 
 ## General Schematics 
 
-![General Schematics](https://raw.githubusercontent.com/andrewrapp/arduino-remote-uploader/master/resources/prototype-wiring-xbee_bb.png"Schematics")
+![General Schematics](https://raw.githubusercontent.com/andrewrapp/arduino-remote-uploader/master/resources/prototype-wiring-xbee_bb.png)
 
 ## References
 - [RemoteUploader Project](https://github.com/andrewrapp/arduino-remote-uploader)
