@@ -1,6 +1,6 @@
 #include "flasher.h"
 
-#define RESET_PIN 9
+#define RESET_PIN 10
 
 Flasher flasher;
 extEEPROM eeprom = extEEPROM(kbits_256, 1, 64);
@@ -10,7 +10,7 @@ void setup()
 	setupEEPROM();
 	setupFlasher();
 	Serial.println("Setup Complete");
-  if (flasher.flash(EEPROM_OFFSET_ADDRESS, 2758 - EEPROM_OFFSET_ADDRESS) != OK)
+  if (flasher.flash(EEPROM_OFFSET_ADDRESS, 2639 - EEPROM_OFFSET_ADDRESS) != OK)
   {
     Serial.println("Flash Failed");
     halt();

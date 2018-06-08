@@ -20,7 +20,7 @@ void setup()
   setupEeprom();
   setupUsb();
   setupProcessor();
-  startProcessing("b.hex");
+  startProcessing("a.hex");
   
   Serial.println("Setup Complete");
 }
