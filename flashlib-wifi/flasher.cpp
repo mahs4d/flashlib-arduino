@@ -49,7 +49,7 @@ void Flasher::bounce()
 	pinMode(resetPin, INPUT);
 }
 
-int Flasher::flash(int startAddress, int size)
+int Flasher::flash(uint16_t startAddress, int size)
 {
 	uint8_t result = OK;
 	bounce();
@@ -63,8 +63,8 @@ int Flasher::flash(int startAddress, int size)
 		return result;
 	}
 
-	int currentAddress = startAddress;
-	int endAddress = size + EEPROM_OFFSET_ADDRESS;
+	uint16_t currentAddress = startAddress;
+	uint16_t endAddress = size + EEPROM_OFFSET_ADDRESS;
 	while (currentAddress < endAddress)
 	{
 		int len = 0;
@@ -77,13 +77,13 @@ int Flasher::flash(int startAddress, int size)
 			len = PROG_PAGE_SIZE;
 		}
 
-		if ((result = eeprom->read(currentAddress, buffer + 3, len)) == -1)
+		if ((result = eeprom->read(currentAddress, buffer + 3, len)) != 0)
 		{
-			return result;
+			return -1;
 		}
 
-		addr[0] = ((currentAddress - startAddress) / 2) & 0xff;
-		addr[1] = (((currentAddress - startAddress) / 2) >> 8) & 0xff;
+		addr[0] = ((currentAddress - startAddress + PROGRAM_START_ADDRESS)) & 0xff;
+		addr[1] = (((currentAddress - startAddress + PROGRAM_START_ADDRESS)) >> 8) & 0xff;
 
 		if ((result = sendPageToOptiboot(addr, buffer, len)) == -1)
 		{

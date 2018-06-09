@@ -46,6 +46,56 @@ def send(ip, file):
 
     f.close()
 
+    print('File Size: ' + str(size))
+
+    s.send('flashme'.encode('ascii'))
+
+    bytestring = size.to_bytes(2, 'little')
+    s.send(bytestring)
+    print('Sending...')
+
+    packcount = 0
+    total = 0
+    for line in lines:
+        print(line)
+        s.send(line)
+        rdata = s.recv(2)
+        print(rdata.decode('ascii'))
+        total += len(line)
+        packcount += 1
+
+    print('Total Bytes Sent: ' + str(total))
+    print('Total Packets Sent: ' + str(packcount))
+
+    rdata = s.recv(2)
+    rdata = rdata.decode('ascii')
+
+    if rdata == 'OK':
+        print('Flash Was Successfull')
+    else:
+        print('Error in Flashing')
+
+    f.close()
+    s.close()
+    pass
+
+
+def sendAll(ip, file):
+    print('ip:' + ip)
+    print('file:' + file)
+
+    s = socket.socket()
+    s.connect((ip, 8890))
+
+    f = open(file, 'rb')
+
+    lines = f.readlines()
+
+    size = 0
+    for line in lines:
+        size += len(line)
+
+    f.close()
 
     print('File Size: ' + str(size))
 

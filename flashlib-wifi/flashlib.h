@@ -6,6 +6,7 @@
 
 // EEPROM
 #define EEPROM_OFFSET_ADDRESS 16
+#define PROGRAM_START_ADDRESS 0
 
 // Page and Buffers
 #define PACKET_SIZE 32

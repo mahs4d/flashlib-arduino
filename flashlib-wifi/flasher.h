@@ -36,7 +36,7 @@ public:
 	Flasher();
 	void reset();
 	int setup(HardwareSerial* _serial, extEEPROM* _eeprom, uint8_t _resetPin);
- 	int flash(int startAddress, int size);
+ 	int flash(uint16_t startAddress, int size);
 };
 
 #endif

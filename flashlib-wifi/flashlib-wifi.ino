@@ -200,11 +200,13 @@ int startProcessing(WiFiEspClient* client, int size)
 int startFlashing(int size)
 {
 	Flasher flasher;
+  delay(100);
 	if (flasher.setup(&Serial, &eeprom, RESET_PIN) != OK)
   {
     Serial.println("Error in flasher setup");
     return -1;
   }
+  delay(100);
 	return flasher.flash(EEPROM_OFFSET_ADDRESS, size - EEPROM_OFFSET_ADDRESS);
 }
 

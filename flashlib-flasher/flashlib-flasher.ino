@@ -10,7 +10,7 @@ void setup()
 	setupEEPROM();
 	setupFlasher();
 	Serial.println("Setup Complete");
-  if (flasher.flash(EEPROM_OFFSET_ADDRESS, 2639 - EEPROM_OFFSET_ADDRESS) != OK)
+  if (flasher.flash(EEPROM_OFFSET_ADDRESS, 1936) != OK)
   {
     Serial.println("Flash Failed");
     halt();
